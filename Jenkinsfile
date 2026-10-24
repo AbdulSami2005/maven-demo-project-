@@ -4,25 +4,20 @@ pipeline {
     stages {
         stage('Compile Stage') {
             steps {
-                withMaven(maven: 'maven') {
-                    sh 'mvn clean compile'
-                }
+                // If maven is globally installed on your system, 'mvn' works directly
+                sh 'mvn clean compile'
             }
         }
 
         stage('Testing Stage') {
             steps {
-                withMaven(maven: 'maven') {
-                    sh 'mvn test'
-                }
+                sh 'mvn test'
             }
         }
 
         stage('Deployment Stage') {
             steps {
-                withMaven(maven: 'maven') {
-                    sh 'mvn deploy'
-                }
+                sh 'mvn package -DskipTests'
             }
         }
     }
