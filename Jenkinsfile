@@ -1,10 +1,15 @@
 pipeline {
     agent any
 
+    tools {
+        // This matches the Name 'maven' field configured in your Jenkins UI screenshot
+        maven 'maven'
+    }
+
     stages {
         stage('Compile Stage') {
             steps {
-                // If maven is globally installed on your system, 'mvn' works directly
+                // Jenkins will now automatically locate 'mvn' via your MAVEN_HOME configuration
                 sh 'mvn clean compile'
             }
         }
